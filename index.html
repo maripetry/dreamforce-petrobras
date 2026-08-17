@@ -8,14 +8,17 @@
 <style>
   :root {
     color-scheme: light;
-    --ocean: #0D2B45;
-    --ocean-mid: #1A4A6E;
-    --ocean-light: #2A6599;
-    --gold: #C9A84C;
-    --gold-light: #E8C96A;
+    --ocean: #0035B0;
+    --ocean-mid: #0050CC;
+    --ocean-light: #0070E0;
+    --gold: #FED100;
+    --gold-light: #FFE34D;
+    --pb-green: #009B3A;
+    --pb-green-light: #00C04A;
     --sf-blue: #00A1E0;
-    --sf-blue-dark: #0070D2;
+    --sf-blue-dark: #0035B0;
     --sf-blue-glow: rgba(0,161,224,0.25);
+    --teal: #00C9A7;
     --fog: #8FA3B1;
     --cream: #F7F4EE;
     --white: #FFFFFF;
@@ -39,7 +42,7 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: var(--ocean);
+    background: #001F8C;
     border-bottom: 1px solid rgba(201,168,76,0.3);
     display: flex;
     align-items: center;
@@ -110,9 +113,7 @@
   /* HERO */
   .hero {
     margin-top: 60px;
-    background:
-      linear-gradient(to bottom, rgba(5,15,25,0.72) 0%, rgba(5,15,25,0.55) 40%, rgba(5,15,25,0.78) 100%),
-      url("og-featured-image-1440x810-df.webp") center/cover no-repeat;
+    background: linear-gradient(135deg, #001F8C 0%, #0035B0 30%, #0050CC 65%, #0035B0 100%);
     padding: 5rem 2rem 4rem;
     text-align: center;
     position: relative;
@@ -694,8 +695,159 @@
     border-bottom: 1px solid rgba(0,161,224,0.2);
   }
   .nav-logo {
-    background: linear-gradient(135deg, var(--sf-blue) 0%, var(--gold) 100%);
+    background: linear-gradient(135deg, var(--pb-green) 0%, var(--gold) 100%);
   }
+
+  /* ── HERO BLOBS (Agentforce deck style) ── */
+  .hero-blobs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .blob { position: absolute; }
+  .blob-green  { width: 420px; top: -80px;  right: -60px;  }
+  .blob-yellow { width: 300px; bottom: -60px; left: -40px; }
+  .blob-teal   { width: 200px; top: 40%;   right: 18%;   }
+
+  /* ── SF + PB LOCKUP (top-left, deck style) ── */
+  .hero-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 2.2rem;
+  }
+  .lockup-sf {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .lockup-sf-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+  .lockup-rule {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.3);
+  }
+  .lockup-pb {}
+  .pb-logo-img {
+    height: 36px;
+    object-fit: contain;
+  }
+
+  /* ── H1 restyled — bold deck weight ── */
+  .hero h1 {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: clamp(2.4rem, 5.5vw, 4rem) !important;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .h1-accent {
+    color: var(--gold) !important;
+    font-style: normal;
+  }
+  .h1-sub {
+    display: block;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0;
+    margin-top: 4px;
+  }
+
+  /* ── TAG pills restyled ── */
+  .tag-blue {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+  }
+
+  /* ── DATES pill — green accent ── */
+  .hero-dates {
+    background: rgba(0,155,58,0.2) !important;
+    border: 1px solid rgba(0,155,58,0.5) !important;
+  }
+  .hero-dates span { color: #fff !important; }
+  .hero-dates .dot { background: var(--pb-green) !important; }
+
+  /* ── SECTION titles — SF blue ── */
+  .section-title { color: var(--ocean) !important; }
+  .section-label { color: var(--pb-green) !important; }
+
+  /* ── GOLD → yellow swaps ── */
+  .tl-time { color: var(--gold) !important; }
+  .tl-badge { background: var(--ocean) !important; color: var(--gold) !important; }
+  .tl-dot   { background: var(--gold) !important; box-shadow: 0 0 0 2px var(--gold) !important; }
+
+  /* ── NAV active link color ── */
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--gold) !important;
+    background: rgba(254,209,0,0.12) !important;
+  }
+
+  /* ── CHECKLIST accent ── */
+  .check-item input[type="checkbox"] { accent-color: var(--pb-green) !important; }
+
+  /* ── TIP card border ── */
+  .event-tip { border-left-color: var(--pb-green) !important; }
+
+  /* ── LOCKUP names only ── */
+  .lockup-pb-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .lockup-sf-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── LANGUAGE TOGGLE BUTTON ── */
+  .lang-toggle {
+    background: rgba(254,209,0,0.15);
+    border: 1.5px solid rgba(254,209,0,0.5);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .lang-toggle:hover {
+    background: rgba(254,209,0,0.28);
+  }
+
+  /* ── LANGUAGE VISIBILITY ── */
+  /* Default: show EN, hide PT */
+  body.lang-pt .tl-en  { display: none; }
+  body.lang-pt .tl-pt  { display: block !important; }
+  body.lang-pt .tip-en { display: none; }
+  body.lang-pt .tip-pt { display: block !important; }
+  body.lang-pt .check-text .en { display: none; }
+  body.lang-pt .check-text .pt { display: block !important; font-size: 14px !important; color: var(--text) !important; font-style: normal !important; }
+  body.lang-pt .hero-sub    { display: none; }
+  body.lang-pt .hero-sub-pt { display: block !important; font-size: 1rem !important; color: var(--fog) !important; font-style: normal !important; margin-bottom: 2.5rem !important; }
+  body.lang-pt .section-title-pt { display: none; }
+
+  body:not(.lang-pt) .tl-pt  { display: none; }
+  body:not(.lang-pt) .tip-pt { display: none; }
+  body:not(.lang-pt) .hero-sub-pt { display: none; }
 </style>
 </head>
 <body>
@@ -703,10 +855,9 @@
 <!-- NAV -->
 <nav>
   <div class="nav-brand">
-    <div class="nav-logo">P</div>
     <div>
-      <div class="nav-title">Petrobras × Dreamforce</div>
-      <div class="nav-subtitle">San Francisco · 2026</div>
+      <div class="nav-title">Petrobras × Dreamforce 2026</div>
+      <div class="nav-subtitle">San Francisco · Moscone Center</div>
     </div>
   </div>
   <ul class="nav-links">
@@ -714,35 +865,58 @@
     <li><a href="#sf-tips" class="nav-link">San Francisco</a></li>
     <li><a href="#event-tips" class="nav-link">Dreamforce Tips</a></li>
     <li><a href="#sessions" class="nav-link">Sessions</a></li>
+    <li><button class="lang-toggle" onclick="toggleLang()" id="langBtn">🇧🇷 PT</button></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <!-- Co-brand lockup -->
-  <div class="hero-cobrands">
-    <div class="cobrand-item cobrand-sf">
-      <svg width="28" height="20" viewBox="0 0 50 35" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.8 6.1C22.7 4.1 25.4 2.9 28.4 2.9c4.1 0 7.7 2.3 9.6 5.7.7-.3 1.5-.5 2.3-.5 3.3 0 6 2.7 6 6 0 .5-.1 1-.2 1.5C48 16.7 49 18.8 49 21.1c0 4.5-3.6 8.1-8.1 8.1H13.1C8.1 29.2 4 25.1 4 20.1c0-3.8 2.3-7 5.6-8.5-.1-.6-.2-1.2-.2-1.8 0-5.2 4-9.4 9.1-9.4 1 0 1.9.2 2.8.4.1.4-.1.9.5 5.3z" fill="#00A1E0"/></svg>
-      <span>Salesforce</span>
+  <!-- Decorative blobs — Agentforce style -->
+  <div class="hero-blobs" aria-hidden="true">
+    <!-- Petrobras green blob — top right, like the teal in the deck -->
+    <svg class="blob blob-green" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="200" rx="180" ry="160" fill="#009B3A" opacity="0.55" transform="rotate(-20 200 200)"/>
+    </svg>
+    <!-- Yellow accent blob — bottom left -->
+    <svg class="blob blob-yellow" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="150" cy="150" rx="130" ry="110" fill="#FED100" opacity="0.18" transform="rotate(15 150 150)"/>
+    </svg>
+    <!-- Teal highlight — mid right -->
+    <svg class="blob blob-teal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="100" cy="100" rx="90" ry="70" fill="#00C9A7" opacity="0.35" transform="rotate(30 100 100)"/>
+    </svg>
+  </div>
+
+  <!-- SF Cloud + divider + Petrobras logo — exact deck layout -->
+  <div class="hero-lockup">
+    <div class="lockup-sf">
+      <svg width="44" height="32" viewBox="0 0 64 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="45" rx="12" fill="#00A1E0"/>
+        <path d="M26.5 9C28.8 6.6 32 5.1 35.6 5.1c5.2 0 9.7 2.9 12.1 7.2.9-.4 1.9-.6 2.9-.6 4.1 0 7.5 3.4 7.5 7.5 0 .6-.1 1.3-.2 1.9 2.5 1.5 4.1 4.2 4.1 7.2 0 4.7-3.8 8.5-8.5 8.5H16.1C10.1 36.8 5.2 31.9 5.2 25.9c0-4.8 3-8.9 7.3-10.6-.2-.8-.3-1.6-.3-2.4C12.2 7 16.9 2 22.8 2c1.3 0 2.5.2 3.7.7z" fill="white"/>
+      </svg>
+      <span class="lockup-sf-label">salesforce</span>
     </div>
-    <div class="cobrand-divider">×</div>
-    <div class="cobrand-item cobrand-pb">
-      <img src="petrobras.png" alt="Petrobras" style="height:28px;object-fit:contain;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg) brightness(0.9)"/>
+    <div class="lockup-rule"></div>
+    <div class="lockup-pb">
+      <img src="petrobras.png" alt="Petrobras" class="pb-logo-img"/>
     </div>
   </div>
 
   <div class="hero-eyebrow">Guia Exclusivo · Exclusive Guide</div>
-  <h1>Your <span>Dreamforce</span><br/>Experience Starts Here</h1>
-  <p class="hero-sub">A personalized guide crafted for the Petrobras team — everything you need for an exceptional experience at Salesforce's flagship event.</p>
-  <p class="hero-sub-pt">Um guia personalizado para a equipe Petrobras — tudo que você precisa para uma experiência excepcional no maior evento da Salesforce.</p>
 
-  <!-- SF-branded pill tags -->
+  <h1>Dreamforce <span class="h1-accent">2026</span><br/>
+  <span class="h1-sub">Petrobras Experience Guide</span></h1>
+
+  <p class="hero-sub">Everything your team needs for an exceptional, personalized experience at Salesforce's flagship event in San Francisco.</p>
+  <p class="hero-sub-pt">Tudo que sua equipe precisa para uma experiência excepcional no maior evento da Salesforce em São Francisco.</p>
+
+  <!-- Track filter tags — Agentforce style pills -->
   <div class="hero-tags">
-    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Agentforce</div>
-    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Energy &amp; Utilities</div>
-    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Field Service</div>
-    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Public Sector</div>
-    <div class="hero-tag"><span class="tag-dot" style="background:#C9A84C"></span>Headless 360</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#00C9A7"></span>Agentforce</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#00C9A7"></span>Energy &amp; Utilities</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#00C9A7"></span>Field Service</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#FED100"></span>Public Sector</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#FED100"></span>Headless 360</div>
   </div>
 
   <div class="hero-dates">
@@ -1466,14 +1640,17 @@
 <style>
   :root {
     color-scheme: light;
-    --ocean: #0D2B45;
-    --ocean-mid: #1A4A6E;
-    --ocean-light: #2A6599;
-    --gold: #C9A84C;
-    --gold-light: #E8C96A;
+    --ocean: #0035B0;
+    --ocean-mid: #0050CC;
+    --ocean-light: #0070E0;
+    --gold: #FED100;
+    --gold-light: #FFE34D;
+    --pb-green: #009B3A;
+    --pb-green-light: #00C04A;
     --sf-blue: #00A1E0;
-    --sf-blue-dark: #0070D2;
+    --sf-blue-dark: #0035B0;
     --sf-blue-glow: rgba(0,161,224,0.25);
+    --teal: #00C9A7;
     --fog: #8FA3B1;
     --cream: #F7F4EE;
     --white: #FFFFFF;
@@ -1568,9 +1745,7 @@
   /* HERO */
   .hero {
     margin-top: 60px;
-    background:
-      linear-gradient(to bottom, rgba(5,15,25,0.72) 0%, rgba(5,15,25,0.55) 40%, rgba(5,15,25,0.78) 100%),
-      url("og-featured-image-1440x810-df.webp") center/cover no-repeat;
+    background: linear-gradient(135deg, #001F8C 0%, #0035B0 30%, #0050CC 65%, #0035B0 100%);
     padding: 5rem 2rem 4rem;
     text-align: center;
     position: relative;
@@ -2152,8 +2327,159 @@
     border-bottom: 1px solid rgba(0,161,224,0.2);
   }
   .nav-logo {
-    background: linear-gradient(135deg, var(--sf-blue) 0%, var(--gold) 100%);
+    background: linear-gradient(135deg, var(--pb-green) 0%, var(--gold) 100%);
   }
+
+  /* ── HERO BLOBS (Agentforce deck style) ── */
+  .hero-blobs {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .blob { position: absolute; }
+  .blob-green  { width: 420px; top: -80px;  right: -60px;  }
+  .blob-yellow { width: 300px; bottom: -60px; left: -40px; }
+  .blob-teal   { width: 200px; top: 40%;   right: 18%;   }
+
+  /* ── SF + PB LOCKUP (top-left, deck style) ── */
+  .hero-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 2.2rem;
+  }
+  .lockup-sf {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .lockup-sf-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+  .lockup-rule {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.3);
+  }
+  .lockup-pb {}
+  .pb-logo-img {
+    height: 36px;
+    object-fit: contain;
+  }
+
+  /* ── H1 restyled — bold deck weight ── */
+  .hero h1 {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: clamp(2.4rem, 5.5vw, 4rem) !important;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .h1-accent {
+    color: var(--gold) !important;
+    font-style: normal;
+  }
+  .h1-sub {
+    display: block;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0;
+    margin-top: 4px;
+  }
+
+  /* ── TAG pills restyled ── */
+  .tag-blue {
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    color: #fff !important;
+  }
+
+  /* ── DATES pill — green accent ── */
+  .hero-dates {
+    background: rgba(0,155,58,0.2) !important;
+    border: 1px solid rgba(0,155,58,0.5) !important;
+  }
+  .hero-dates span { color: #fff !important; }
+  .hero-dates .dot { background: var(--pb-green) !important; }
+
+  /* ── SECTION titles — SF blue ── */
+  .section-title { color: var(--ocean) !important; }
+  .section-label { color: var(--pb-green) !important; }
+
+  /* ── GOLD → yellow swaps ── */
+  .tl-time { color: var(--gold) !important; }
+  .tl-badge { background: var(--ocean) !important; color: var(--gold) !important; }
+  .tl-dot   { background: var(--gold) !important; box-shadow: 0 0 0 2px var(--gold) !important; }
+
+  /* ── NAV active link color ── */
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--gold) !important;
+    background: rgba(254,209,0,0.12) !important;
+  }
+
+  /* ── CHECKLIST accent ── */
+  .check-item input[type="checkbox"] { accent-color: var(--pb-green) !important; }
+
+  /* ── TIP card border ── */
+  .event-tip { border-left-color: var(--pb-green) !important; }
+
+  /* ── LOCKUP names only ── */
+  .lockup-pb-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .lockup-sf-label {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ── LANGUAGE TOGGLE BUTTON ── */
+  .lang-toggle {
+    background: rgba(254,209,0,0.15);
+    border: 1.5px solid rgba(254,209,0,0.5);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+  .lang-toggle:hover {
+    background: rgba(254,209,0,0.28);
+  }
+
+  /* ── LANGUAGE VISIBILITY ── */
+  /* Default: show EN, hide PT */
+  body.lang-pt .tl-en  { display: none; }
+  body.lang-pt .tl-pt  { display: block !important; }
+  body.lang-pt .tip-en { display: none; }
+  body.lang-pt .tip-pt { display: block !important; }
+  body.lang-pt .check-text .en { display: none; }
+  body.lang-pt .check-text .pt { display: block !important; font-size: 14px !important; color: var(--text) !important; font-style: normal !important; }
+  body.lang-pt .hero-sub    { display: none; }
+  body.lang-pt .hero-sub-pt { display: block !important; font-size: 1rem !important; color: var(--fog) !important; font-style: normal !important; margin-bottom: 2.5rem !important; }
+  body.lang-pt .section-title-pt { display: none; }
+
+  body:not(.lang-pt) .tl-pt  { display: none; }
+  body:not(.lang-pt) .tip-pt { display: none; }
+  body:not(.lang-pt) .hero-sub-pt { display: none; }
 </style>
 </head>
 <body>
@@ -2161,10 +2487,9 @@
 <!-- NAV -->
 <nav>
   <div class="nav-brand">
-    <div class="nav-logo">P</div>
     <div>
-      <div class="nav-title">Petrobras × Dreamforce</div>
-      <div class="nav-subtitle">San Francisco · 2026</div>
+      <div class="nav-title">Petrobras × Dreamforce 2026</div>
+      <div class="nav-subtitle">San Francisco · Moscone Center</div>
     </div>
   </div>
   <ul class="nav-links">
@@ -2172,35 +2497,58 @@
     <li><a href="#sf-tips" class="nav-link">San Francisco</a></li>
     <li><a href="#event-tips" class="nav-link">Dreamforce Tips</a></li>
     <li><a href="#sessions" class="nav-link">Sessions</a></li>
+    <li><button class="lang-toggle" onclick="toggleLang()" id="langBtn">🇧🇷 PT</button></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <!-- Co-brand lockup -->
-  <div class="hero-cobrands">
-    <div class="cobrand-item cobrand-sf">
-      <svg width="28" height="20" viewBox="0 0 50 35" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.8 6.1C22.7 4.1 25.4 2.9 28.4 2.9c4.1 0 7.7 2.3 9.6 5.7.7-.3 1.5-.5 2.3-.5 3.3 0 6 2.7 6 6 0 .5-.1 1-.2 1.5C48 16.7 49 18.8 49 21.1c0 4.5-3.6 8.1-8.1 8.1H13.1C8.1 29.2 4 25.1 4 20.1c0-3.8 2.3-7 5.6-8.5-.1-.6-.2-1.2-.2-1.8 0-5.2 4-9.4 9.1-9.4 1 0 1.9.2 2.8.4.1.4-.1.9.5 5.3z" fill="#00A1E0"/></svg>
-      <span>Salesforce</span>
+  <!-- Decorative blobs — Agentforce style -->
+  <div class="hero-blobs" aria-hidden="true">
+    <!-- Petrobras green blob — top right, like the teal in the deck -->
+    <svg class="blob blob-green" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="200" rx="180" ry="160" fill="#009B3A" opacity="0.55" transform="rotate(-20 200 200)"/>
+    </svg>
+    <!-- Yellow accent blob — bottom left -->
+    <svg class="blob blob-yellow" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="150" cy="150" rx="130" ry="110" fill="#FED100" opacity="0.18" transform="rotate(15 150 150)"/>
+    </svg>
+    <!-- Teal highlight — mid right -->
+    <svg class="blob blob-teal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="100" cy="100" rx="90" ry="70" fill="#00C9A7" opacity="0.35" transform="rotate(30 100 100)"/>
+    </svg>
+  </div>
+
+  <!-- SF Cloud + divider + Petrobras logo — exact deck layout -->
+  <div class="hero-lockup">
+    <div class="lockup-sf">
+      <svg width="44" height="32" viewBox="0 0 64 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="45" rx="12" fill="#00A1E0"/>
+        <path d="M26.5 9C28.8 6.6 32 5.1 35.6 5.1c5.2 0 9.7 2.9 12.1 7.2.9-.4 1.9-.6 2.9-.6 4.1 0 7.5 3.4 7.5 7.5 0 .6-.1 1.3-.2 1.9 2.5 1.5 4.1 4.2 4.1 7.2 0 4.7-3.8 8.5-8.5 8.5H16.1C10.1 36.8 5.2 31.9 5.2 25.9c0-4.8 3-8.9 7.3-10.6-.2-.8-.3-1.6-.3-2.4C12.2 7 16.9 2 22.8 2c1.3 0 2.5.2 3.7.7z" fill="white"/>
+      </svg>
+      <span class="lockup-sf-label">salesforce</span>
     </div>
-    <div class="cobrand-divider">×</div>
-    <div class="cobrand-item cobrand-pb">
-      <img src="petrobras.png" alt="Petrobras" style="height:28px;object-fit:contain;filter:brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(5deg) brightness(0.9)"/>
+    <div class="lockup-rule"></div>
+    <div class="lockup-pb">
+      <img src="petrobras.png" alt="Petrobras" class="pb-logo-img"/>
     </div>
   </div>
 
   <div class="hero-eyebrow">Guia Exclusivo · Exclusive Guide</div>
-  <h1>Your <span>Dreamforce</span><br/>Experience Starts Here</h1>
-  <p class="hero-sub">A personalized guide crafted for the Petrobras team — everything you need for an exceptional experience at Salesforce's flagship event.</p>
-  <p class="hero-sub-pt">Um guia personalizado para a equipe Petrobras — tudo que você precisa para uma experiência excepcional no maior evento da Salesforce.</p>
 
-  <!-- SF-branded pill tags -->
+  <h1>Dreamforce <span class="h1-accent">2026</span><br/>
+  <span class="h1-sub">Petrobras Experience Guide</span></h1>
+
+  <p class="hero-sub">Everything your team needs for an exceptional, personalized experience at Salesforce's flagship event in San Francisco.</p>
+  <p class="hero-sub-pt">Tudo que sua equipe precisa para uma experiência excepcional no maior evento da Salesforce em São Francisco.</p>
+
+  <!-- Track filter tags — Agentforce style pills -->
   <div class="hero-tags">
-    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Agentforce</div>
-    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Energy &amp; Utilities</div>
-    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Field Service</div>
-    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Public Sector</div>
-    <div class="hero-tag"><span class="tag-dot" style="background:#C9A84C"></span>Headless 360</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#00C9A7"></span>Agentforce</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#00C9A7"></span>Energy &amp; Utilities</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#00C9A7"></span>Field Service</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#FED100"></span>Public Sector</div>
+    <div class="hero-tag tag-blue"><span class="tag-dot" style="background:#FED100"></span>Headless 360</div>
   </div>
 
   <div class="hero-dates">
@@ -2936,6 +3284,21 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Language toggle
+  let currentLang = 'en';
+  function toggleLang() {
+    const btn = document.getElementById('langBtn');
+    if (currentLang === 'en') {
+      currentLang = 'pt';
+      document.body.classList.add('lang-pt');
+      btn.textContent = '🇺🇸 EN';
+    } else {
+      currentLang = 'en';
+      document.body.classList.remove('lang-pt');
+      btn.textContent = '🇧🇷 PT';
+    }
+  }
 </script>
 
 </body>
