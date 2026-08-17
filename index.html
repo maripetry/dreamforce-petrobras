@@ -1,0 +1,2944 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Petrobras × Dreamforce 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    color-scheme: light;
+    --ocean: #0D2B45;
+    --ocean-mid: #1A4A6E;
+    --ocean-light: #2A6599;
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --sf-blue: #00A1E0;
+    --sf-blue-dark: #0070D2;
+    --sf-blue-glow: rgba(0,161,224,0.25);
+    --fog: #8FA3B1;
+    --cream: #F7F4EE;
+    --white: #FFFFFF;
+    --text: #1A1A2E;
+    --muted: #5A6A78;
+    --radius: 12px;
+    --radius-sm: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--ocean);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ocean);
+  }
+
+  .nav-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-subtitle {
+    font-size: 10px;
+    color: var(--fog);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--fog);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+  }
+
+  /* HERO */
+  .hero {
+    margin-top: 60px;
+    background:
+      linear-gradient(to bottom, rgba(5,15,25,0.72) 0%, rgba(5,15,25,0.55) 40%, rgba(5,15,25,0.78) 100%),
+      url("assets/df26-kv.png") center/cover no-repeat;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(247,244,238,0.08));
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.15), transparent);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero h1 span {
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--fog);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 0.5rem;
+  }
+
+  .hero-sub-pt {
+    font-size: 0.85rem;
+    color: rgba(143,163,177,0.7);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-dates {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 40px;
+    padding: 10px 24px;
+  }
+
+  .hero-dates span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-dates .dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* SECTION COMMON */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--ocean);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  .section-title-pt {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(13,43,69,0.12);
+    margin: 0;
+  }
+
+  /* CHECKLIST */
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .checklist-grid { grid-template-columns: 1fr; }
+  }
+
+  .checklist-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    border: 1px solid rgba(13,43,69,0.08);
+    box-shadow: 0 2px 8px rgba(13,43,69,0.05);
+  }
+
+  .checklist-card h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ocean);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .checklist-card h3 .icon {
+    font-size: 18px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(13,43,69,0.05);
+    cursor: pointer;
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-item input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+  }
+
+  .check-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .check-text .en { font-weight: 500; }
+  .check-text .pt { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 1px; }
+
+  .check-item.done .check-text { text-decoration: line-through; opacity: 0.5; }
+
+  /* SF TIPS */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 720px) {
+    .tips-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .tips-grid { grid-template-columns: 1fr; }
+  }
+
+  .tip-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(13,43,69,0.08);
+    box-shadow: 0 2px 8px rgba(13,43,69,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .tip-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(13,43,69,0.12);
+  }
+
+  .tip-card-header {
+    background: var(--ocean);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tip-card-header .icon { font-size: 20px; }
+
+  .tip-card-header .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .tip-card-body {
+    padding: 1.2rem;
+  }
+
+  .tip-item {
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(13,43,69,0.06);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .tip-item:last-child { border-bottom: none; }
+
+  .tip-item strong { color: var(--ocean); font-weight: 600; }
+  .tip-item .detail { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+
+  /* EVENT TIPS */
+  .event-tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-tip {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    border: 1px solid rgba(13,43,69,0.08);
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 2px 6px rgba(13,43,69,0.04);
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .event-tip .tip-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .event-tip .tip-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ocean);
+    margin-bottom: 2px;
+  }
+
+  .event-tip .tip-content .tip-en {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+
+  .event-tip .tip-content .tip-pt {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* TIMELINE */
+  .timeline-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    padding: 8px 18px;
+    border-radius: 40px;
+    border: 1.5px solid rgba(13,43,69,0.15);
+    background: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--ocean);
+    color: var(--gold);
+    border-color: var(--ocean);
+  }
+
+  .timeline-day { display: none; }
+  .timeline-day.visible { display: block; }
+
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.2));
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+
+  .tl-dot {
+    position: absolute;
+    left: -32px;
+    top: 14px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .tl-dot.executive { background: var(--ocean); box-shadow: 0 0 0 2px var(--ocean); }
+  .tl-dot.latam { background: #2ecc71; box-shadow: 0 0 0 2px #2ecc71; }
+  .tl-dot.travel { background: var(--fog); box-shadow: 0 0 0 2px var(--fog); border-style: dashed; }
+
+  .tl-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+    border: 1px solid rgba(13,43,69,0.08);
+    box-shadow: 0 2px 6px rgba(13,43,69,0.04);
+  }
+
+  .tl-card.executive { border-left: 4px solid var(--ocean); }
+  .tl-card.latam { border-left: 4px solid #2ecc71; }
+  .tl-card.keynote { border-left: 4px solid var(--gold); background: linear-gradient(to right, #fffef5, var(--white)); }
+  .tl-card.travel {
+    background: rgba(143,163,177,0.1);
+    border: 1px dashed rgba(143,163,177,0.4);
+    box-shadow: none;
+  }
+
+  .tl-time {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tl-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--ocean);
+    color: var(--gold);
+  }
+
+  .tl-badge.latam { background: rgba(46,204,113,0.15); color: #1a9455; }
+  .tl-badge.keynote { background: rgba(201,168,76,0.15); color: #8B6914; }
+
+  .tl-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ocean);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .tl-card .tl-en {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 3px;
+  }
+
+  .tl-card .tl-pt {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .tl-card .tl-meta {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tl-meta-item {
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .tl-card.travel h4 { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding: 12px 16px;
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(13,43,69,0.06);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ocean);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--fog);
+    line-height: 1.7;
+  }
+
+  footer strong { color: var(--gold); }
+
+  /* SECTION BG ALTERNATION */
+  .section-alt { background: var(--white); }
+  .section-alt .section { padding: 4rem 2rem; }
+
+  /* SCROLL ANIMATION */
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* CO-BRAND */
+  .hero-cobrands {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .cobrand-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .cobrand-sf { color: #00A1E0; }
+  .cobrand-pb { color: var(--gold); }
+  .cobrand-divider {
+    font-size: 18px;
+    color: rgba(255,255,255,0.25);
+    font-weight: 300;
+  }
+  .pb-badge {
+    width: 24px; height: 24px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Playfair Display", serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ocean);
+  }
+
+  /* CLOUD DECO */
+  .hero-clouds {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .cloud { position: absolute; }
+  .cloud-1 { width: 340px; top: -10px; right: -40px; transform: rotate(-8deg); }
+  .cloud-2 { width: 260px; bottom: 10px; left: -20px; transform: rotate(5deg); }
+  .cloud-3 { width: 180px; top: 30px; left: 20%; opacity: 0.7; }
+
+  /* HERO TAGS */
+  .hero-tags {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.03em;
+    backdrop-filter: blur(4px);
+  }
+  .tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* NAV SF accent */
+  nav {
+    border-bottom: 1px solid rgba(0,161,224,0.2);
+  }
+  .nav-logo {
+    background: linear-gradient(135deg, var(--sf-blue) 0%, var(--gold) 100%);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">P</div>
+    <div>
+      <div class="nav-title">Petrobras × Dreamforce</div>
+      <div class="nav-subtitle">San Francisco · 2026</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#checklist" class="nav-link">Checklist</a></li>
+    <li><a href="#sf-tips" class="nav-link">San Francisco</a></li>
+    <li><a href="#event-tips" class="nav-link">Dreamforce Tips</a></li>
+    <li><a href="#sessions" class="nav-link">Sessions</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Co-brand lockup -->
+  <div class="hero-cobrands">
+    <div class="cobrand-item cobrand-sf">
+      <svg width="28" height="20" viewBox="0 0 50 35" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.8 6.1C22.7 4.1 25.4 2.9 28.4 2.9c4.1 0 7.7 2.3 9.6 5.7.7-.3 1.5-.5 2.3-.5 3.3 0 6 2.7 6 6 0 .5-.1 1-.2 1.5C48 16.7 49 18.8 49 21.1c0 4.5-3.6 8.1-8.1 8.1H13.1C8.1 29.2 4 25.1 4 20.1c0-3.8 2.3-7 5.6-8.5-.1-.6-.2-1.2-.2-1.8 0-5.2 4-9.4 9.1-9.4 1 0 1.9.2 2.8.4.1.4-.1.9.5 5.3z" fill="#00A1E0"/></svg>
+      <span>Salesforce</span>
+    </div>
+    <div class="cobrand-divider">×</div>
+    <div class="cobrand-item cobrand-pb">
+      <span class="pb-badge">P</span>
+      <span>Petrobras</span>
+    </div>
+  </div>
+
+  <div class="hero-eyebrow">Guia Exclusivo · Exclusive Guide</div>
+  <h1>Your <span>Dreamforce</span><br/>Experience Starts Here</h1>
+  <p class="hero-sub">A personalized guide crafted for the Petrobras team — everything you need for an exceptional experience at Salesforce's flagship event.</p>
+  <p class="hero-sub-pt">Um guia personalizado para a equipe Petrobras — tudo que você precisa para uma experiência excepcional no maior evento da Salesforce.</p>
+
+  <!-- SF-branded pill tags -->
+  <div class="hero-tags">
+    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Agentforce</div>
+    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Energy &amp; Utilities</div>
+    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Field Service</div>
+    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Public Sector</div>
+    <div class="hero-tag"><span class="tag-dot" style="background:#C9A84C"></span>Headless 360</div>
+  </div>
+
+  <div class="hero-dates">
+    <span>San Francisco</span>
+    <div class="dot"></div>
+    <span>Moscone Center</span>
+    <div class="dot"></div>
+    <span>Dreamforce 2026</span>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<div id="checklist">
+<div class="section fade-in">
+  <div class="section-label">Antes de Partir · Before You Leave</div>
+  <h2 class="section-title">Pre-Travel Checklist</h2>
+  <p class="section-title-pt">Checklist de Viagem</p>
+
+  <div class="checklist-grid">
+    <div class="checklist-card">
+      <h3><span class="icon">🛂</span> Documents & Visa</h3>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Valid US Visa (B1/B2 or applicable)</div>
+          <div class="pt">Visto americano válido (B1/B2 ou aplicável)</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Passport valid 6+ months beyond travel dates</div>
+          <div class="pt">Passaporte válido por 6+ meses além da viagem</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Dreamforce registration confirmation email</div>
+          <div class="pt">E-mail de confirmação do registro no Dreamforce</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Download the Dreamforce mobile app</div>
+          <div class="pt">Baixar o app mobile do Dreamforce</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">ESTA/travel authorization if applicable</div>
+          <div class="pt">ESTA ou autorização de viagem, se aplicável</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="checklist-card">
+      <h3><span class="icon">🌁</span> Weather & Packing</h3>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Pack layers — SF September is 14–22°C (57–72°F)</div>
+          <div class="pt">Levar roupas em camadas — SP em setembro: 14–22°C</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Light jacket for evenings (fog comes in fast)</div>
+          <div class="pt">Jaqueta leve para as noites — o nevoeiro chega rápido</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Comfortable walking shoes — expect 15,000+ steps/day</div>
+          <div class="pt">Sapatos confortáveis — espere 15.000+ passos por dia</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Universal power adapter (US plug: Type A/B)</div>
+          <div class="pt">Adaptador universal (tomada americana: Tipo A/B)</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Portable phone charger / power bank</div>
+          <div class="pt">Carregador portátil / power bank</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="checklist-card">
+      <h3><span class="icon">✈️</span> Travel & Logistics</h3>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Hotel booked near Moscone Center (SoMa district)</div>
+          <div class="pt">Hotel reservado próximo ao Moscone Center (bairro SoMa)</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Download Uber/Lyft app with US payment method</div>
+          <div class="pt">Baixar Uber/Lyft com método de pagamento americano</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">International roaming plan or US SIM card</div>
+          <div class="pt">Plano de roaming internacional ou chip americano</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Notify your bank of international travel</div>
+          <div class="pt">Avisar o banco sobre a viagem internacional</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="checklist-card">
+      <h3><span class="icon">🎯</span> Event Preparation</h3>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Review your session schedule and add to calendar</div>
+          <div class="pt">Revisar agenda de sessões e adicionar ao calendário</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Confirm executive meeting times with your Salesforce contact</div>
+          <div class="pt">Confirmar horários das reuniões executivas com o contato Salesforce</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Bring business cards (digital or physical)</div>
+          <div class="pt">Trazer cartões de visita (digitais ou físicos)</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Review Petrobras's Salesforce roadmap goals before arriving</div>
+          <div class="pt">Revisar os objetivos do roadmap Salesforce da Petrobras antes de chegar</div>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SF TIPS -->
+<div id="sf-tips" class="section-alt">
+<div class="section fade-in">
+  <div class="section-label">Conhecendo a Cidade · Know the City</div>
+  <h2 class="section-title">San Francisco Tips</h2>
+  <p class="section-title-pt">Dicas de São Francisco</p>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">🍽️</span>
+        <span class="label">Restaurants</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Bix</strong> — Supper Club vibes
+          <span class="detail">Jazz, cocktails &amp; American classics. Book ahead. $$$ · Nearby Moscone</span>
+        </div>
+        <div class="tip-item">
+          <strong>Cotogna</strong> — Northern Italian
+          <span class="detail">Wood-fired pastas, great for a team dinner. $$$ · Jackson Square</span>
+        </div>
+        <div class="tip-item">
+          <strong>Delfina</strong> — Cal-Italian Neighborhood
+          <span class="detail">Unpretentious, excellent pizza. $$ · Mission District</span>
+        </div>
+        <div class="tip-item">
+          <strong>Zazie</strong> — French Brunch
+          <span class="detail">Best brunch in the city, cozy. $$ · Cole Valley</span>
+        </div>
+        <div class="tip-item">
+          <strong>Nopa</strong> — Late Night Farm-to-Table
+          <span class="detail">Open until 1am, great cocktails. $$$ · Divisadero</span>
+        </div>
+        <div class="tip-item">
+          <strong>Gary Danko</strong> — Fine Dining
+          <span class="detail">SF institution, perfect for executive dinner. $$$$ · Fisherman's Wharf</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">🚌</span>
+        <span class="label">Getting Around</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Uber / Lyft</strong>
+          <span class="detail">Most reliable option. Expect surge pricing during Dreamforce — leave early</span>
+        </div>
+        <div class="tip-item">
+          <strong>Muni Metro (BART)</strong>
+          <span class="detail">Powell St. station is closest to Moscone. Quick &amp; cheap. Get Clipper card</span>
+        </div>
+        <div class="tip-item">
+          <strong>Walking</strong>
+          <span class="detail">SoMa is very walkable. Most Dreamforce venues are within 15-min walk</span>
+        </div>
+        <div class="tip-item">
+          <strong>Lime / Bird Scooters</strong>
+          <span class="detail">Great for quick hops. Download the app before you arrive</span>
+        </div>
+        <div class="tip-item">
+          <strong>Airport (SFO → City)</strong>
+          <span class="detail">BART from SFO to Powell St. ~35 min, $11. Uber ~30–50 min, $35–60</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">📍</span>
+        <span class="label">Must-See SF</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Golden Gate Bridge</strong>
+          <span class="detail">30-min drive or cycle. Morning views are best before fog rolls in</span>
+        </div>
+        <div class="tip-item">
+          <strong>Ferry Building Marketplace</strong>
+          <span class="detail">Farmers market Sat mornings, great coffee &amp; artisan food. 10-min from Moscone</span>
+        </div>
+        <div class="tip-item">
+          <strong>Salesforce Tower Rooftop</strong>
+          <span class="detail">Top of SF's tallest building — often accessible during Dreamforce</span>
+        </div>
+        <div class="tip-item">
+          <strong>Pier 39 / Fisherman's Wharf</strong>
+          <span class="detail">Classic SF experience — sea lions, clam chowder bowls, great bay views</span>
+        </div>
+        <div class="tip-item">
+          <strong>Chinatown &amp; North Beach</strong>
+          <span class="detail">America's oldest Chinatown, adjacent to Little Italy. Perfect for a wander</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">💡</span>
+        <span class="label">Local Know-How</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Tipping Culture</strong>
+          <span class="detail">15–20% at restaurants, $2–5 for taxis/rideshare is standard</span>
+        </div>
+        <div class="tip-item">
+          <strong>Safety</strong>
+          <span class="detail">Stick to SoMa, Union Square, and waterfront areas. Avoid Tenderloin at night</span>
+        </div>
+        <div class="tip-item">
+          <strong>Currency</strong>
+          <span class="detail">Cards accepted everywhere. Apple Pay / Google Pay widely used</span>
+        </div>
+        <div class="tip-item">
+          <strong>Time Zone</strong>
+          <span class="detail">PDT (UTC-7). That's 4 hours behind Brasília time (BRT = UTC-3)</span>
+        </div>
+        <div class="tip-item">
+          <strong>Emergency</strong>
+          <span class="detail">US emergency number: 911. Consulado Brasileiro: +1 (415) 981-8170</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">☕</span>
+        <span class="label">Coffee &amp; Quick Bites</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Sightglass Coffee</strong>
+          <span class="detail">Best third-wave coffee in SoMa, 5-min from Moscone. Great for breakfast meetings</span>
+        </div>
+        <div class="tip-item">
+          <strong>Blue Bottle Coffee</strong>
+          <span class="detail">Multiple locations near venues, reliable single-origin espresso</span>
+        </div>
+        <div class="tip-item">
+          <strong>Tartine Manufactory</strong>
+          <span class="detail">Legendary bakery in Mission. Best croissants on the West Coast</span>
+        </div>
+        <div class="tip-item">
+          <strong>The Bird (Fried Chicken)</strong>
+          <span class="detail">Perfect fast lunch between sessions — SoMa location. Very popular</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">🏟️</span>
+        <span class="label">Moscone Center</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Moscone North / South / West</strong>
+          <span class="detail">Three connected buildings. Most keynotes in Moscone West (ground floor)</span>
+        </div>
+        <div class="tip-item">
+          <strong>Marriott Marquis</strong>
+          <span class="detail">Connected by skybridge — many executive meetings held here</span>
+        </div>
+        <div class="tip-item">
+          <strong>Yerba Buena Gardens</strong>
+          <span class="detail">Outdoor park between buildings — great for a fresh air break</span>
+        </div>
+        <div class="tip-item">
+          <strong>Baggage Storage</strong>
+          <span class="detail">Available at registration — leave your bag, stay hands-free</span>
+        </div>
+        <div class="tip-item">
+          <strong>Charging Stations</strong>
+          <span class="detail">Scattered throughout all buildings — bring your cable</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="divider"/>
+
+<!-- EVENT TIPS -->
+<div id="event-tips">
+<div class="section fade-in">
+  <div class="section-label">Como se Preparar · How to Prepare</div>
+  <h2 class="section-title">Dreamforce Pro Tips</h2>
+  <p class="section-title-pt">Dicas Essenciais do Evento</p>
+
+  <div class="event-tips-list">
+    <div class="event-tip">
+      <span class="tip-icon">⏰</span>
+      <div class="tip-content">
+        <h4>Arrive Early for Keynotes</h4>
+        <div class="tip-en">The opening keynote fills up fast. Arrive at Moscone West at least 45–60 minutes before the scheduled start. Lines form early and seating is first-come, first-served even with registration.</div>
+        <div class="tip-pt">O keynote de abertura lota rapidamente. Chegue ao Moscone West com 45–60 minutos de antecedência. As filas se formam cedo e os assentos são por ordem de chegada, mesmo com registro.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🌎</span>
+      <div class="tip-content">
+        <h4>LATAM &amp; Energy Industry Sessions — Don't Miss</h4>
+        <div class="tip-en">Salesforce dedicates specific tracks for Latin America customers and for Energy &amp; Utilities. These sessions feature peers from your industry and are the best place to benchmark, learn, and connect with relevant use cases.</div>
+        <div class="tip-pt">A Salesforce dedica trilhas específicas para clientes da América Latina e para os setores de Energia &amp; Utilities. Essas sessões apresentam pares do seu setor e são o melhor lugar para benchmarking e aprendizado.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🤝</span>
+      <div class="tip-content">
+        <h4>Executive Meetings: Arrive 10 min Early</h4>
+        <div class="tip-en">Executive briefings are held at the Marriott Marquis (connected to Moscone). Arrive 10 minutes early, check in at the Executive Briefing Center reception, and bring a focused list of 2–3 strategic topics you want to discuss.</div>
+        <div class="tip-pt">As reuniões executivas acontecem no Marriott Marquis (conectado ao Moscone). Chegue 10 minutos antes, faça check-in na recepção do Executive Briefing Center e traga uma lista focada de 2–3 temas estratégicos.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">📱</span>
+      <div class="tip-content">
+        <h4>Use the Dreamforce App</h4>
+        <div class="tip-en">The official Dreamforce app is your command center. Build your personal schedule, get real-time room changes, and connect with other attendees. Sessions can reach capacity — add them to your agenda in advance.</div>
+        <div class="tip-pt">O app oficial do Dreamforce é sua central de comando. Crie sua agenda pessoal, receba atualizações de salas em tempo real e conecte-se com outros participantes. As sessões podem lotar — adicione-as à sua agenda com antecedência.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🚶</span>
+      <div class="tip-content">
+        <h4>Build in Transit Time Between Sessions</h4>
+        <div class="tip-en">Walking from one end of Moscone to another takes 10–15 minutes during peak hours. Sessions at partner venues (Marriott, Hilton) can take 20+ minutes. We've factored this into the session recommendations below.</div>
+        <div class="tip-pt">Caminhar de uma ponta à outra do Moscone leva 10–15 minutos nos horários de pico. Sessões em locais parceiros (Marriott, Hilton) podem levar 20+ minutos. Isso já está considerado nas recomendações de sessões abaixo.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🍽️</span>
+      <div class="tip-content">
+        <h4>Meals &amp; Networking Strategy</h4>
+        <div class="tip-en">Lunch lines inside Moscone are long. Either eat early (11:30am) or step outside to SoMa restaurants for a faster, better experience. Evening events and parties are where real connections happen — confirm your invitations.</div>
+        <div class="tip-pt">As filas do almoço dentro do Moscone são longas. Almoce cedo (11h30) ou saia para os restaurantes do SoMa. Os eventos noturnos são onde as conexões reais acontecem — confirme seus convites.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🤖</span>
+      <div class="tip-content">
+        <h4>Agentforce Is the Theme of 2026</h4>
+        <div class="tip-en">This year's Dreamforce is heavily focused on Agentforce — Salesforce's AI agent platform. Petrobras should pay close attention to demos in the Agentforce World Tour zone and how autonomous AI agents apply to field service, customer operations, and data management in the energy sector.</div>
+        <div class="tip-pt">O Dreamforce 2026 é fortemente focado no Agentforce — a plataforma de agentes de IA da Salesforce. A Petrobras deve prestar atenção às demos na zona Agentforce World Tour e como agentes de IA autônomos se aplicam a field service, operações de clientes e gestão de dados no setor de energia.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SESSIONS TIMELINE -->
+<div id="sessions" class="section-alt">
+<div class="section fade-in">
+  <div class="section-label">Agenda Recomendada · Recommended Agenda</div>
+  <h2 class="section-title">Sessions for Petrobras</h2>
+  <p class="section-title-pt">Sessões Recomendadas · curadas para o setor de energia e LATAM</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background: var(--gold)"></div> General Session</div>
+    <div class="legend-item"><div class="legend-dot" style="background: var(--ocean)"></div> Executive / Private</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #2ecc71"></div> LATAM Focus</div>
+    <div class="legend-item"><div class="legend-dot" style="background: var(--fog)"></div> Travel Buffer</div>
+  </div>
+
+  <div class="timeline-tabs">
+    <button class="tab-btn active" onclick="showDay('day1', this)">Day 1</button>
+    <button class="tab-btn" onclick="showDay('day2', this)">Day 2</button>
+    <button class="tab-btn" onclick="showDay('day3', this)">Day 3</button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="timeline-day visible" id="day1">
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card keynote">
+          <div class="tl-time">TBD <span class="tl-badge keynote">KEYNOTE</span></div>
+          <h4>Opening Keynote</h4>
+          <div class="tl-en">The must-see session of the event — Salesforce CEO keynote with product announcements and Agentforce vision. Arrive 45–60 min early.</div>
+          <div class="tl-pt">O keynote de abertura com anúncios de produto e visão Agentforce. Chegue 45–60 min antes.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone West, Main Hall</span>
+            <span class="tl-meta-item">⏱ ~2 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🚶 Buffer — walk to next session venue</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#7B6CF6;box-shadow:0 0 0 2px #7B6CF6"></div>
+        <div class="tl-card" style="border-left:4px solid #7B6CF6">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#7B6CF6;color:#fff">AGENTFORCE</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Agentforce track session. Add title, time, and room from the Dreamforce catalog.</div>
+          <div class="tl-pt">Sessão da trilha Agentforce. Adicionar título, horário e sala do catálogo.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🥗 Lunch — step outside SoMa to avoid Moscone lines</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#E55B2D;box-shadow:0 0 0 2px #E55B2D"></div>
+        <div class="tl-card" style="border-left:4px solid #E55B2D">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#E55B2D;color:#fff">ENERGY &amp; UTILITIES</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Energy &amp; Utilities track session. Add title, time, and room from the Dreamforce catalog.</div>
+          <div class="tl-pt">Sessão da trilha Energy &amp; Utilities. Adicionar título, horário e sala do catálogo.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🚶 20 min buffer to next venue</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#0D9E6E;box-shadow:0 0 0 2px #0D9E6E"></div>
+        <div class="tl-card" style="border-left:4px solid #0D9E6E">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#0D9E6E;color:#fff">FIELD SERVICE</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Field Service track session. Add title, time, and room from the Dreamforce catalog.</div>
+          <div class="tl-pt">Sessão da trilha Field Service. Adicionar título, horário e sala do catálogo.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot executive"></div>
+        <div class="tl-card executive">
+          <div class="tl-time">TBD <span class="tl-badge">EXECUTIVE MEETING</span></div>
+          <h4>Executive Briefing: Petrobras Strategic Session</h4>
+          <div class="tl-en">Dedicated executive briefing with Salesforce VP/SVP team. Bring 2–3 focused strategic questions. [Confirm time with your Salesforce contact]</div>
+          <div class="tl-pt">Reunião executiva com time VP/SVP da Salesforce. Traga 2–3 questões estratégicas. [Confirmar com seu contato Salesforce]</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Marriott Marquis, Executive Briefing Center</span>
+            <span class="tl-meta-item">⏱ 60–90 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">Evening <span class="tl-badge">EVENING EVENT</span></div>
+          <h4>Dreamforce Opening Celebration</h4>
+          <div class="tl-en">The official opening party — key opportunity for informal networking. Confirm exclusive partner events.</div>
+          <div class="tl-pt">A festa de abertura oficial — networking informal. Confirme eventos exclusivos de parceiros.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 TBD — Check Dreamforce App</span>
+            <span class="tl-meta-item">⏱ Open-ended</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="timeline-day" id="day2">
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card keynote">
+          <div class="tl-time">TBD <span class="tl-badge keynote">KEYNOTE</span></div>
+          <h4>Industry / Product Keynote</h4>
+          <div class="tl-en">Day 2 keynote — confirm in the Dreamforce app which track keynote is most relevant for the Petrobras team.</div>
+          <div class="tl-pt">Keynote do Dia 2 — confirme no app qual é mais relevante para o time Petrobras.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone West</span>
+            <span class="tl-meta-item">⏱ ~90 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🚶 Buffer — walk to next session venue</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#7B6CF6;box-shadow:0 0 0 2px #7B6CF6"></div>
+        <div class="tl-card" style="border-left:4px solid #7B6CF6">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#7B6CF6;color:#fff">AGENTFORCE</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Agentforce track session. Add title, time, and room from the Dreamforce catalog.</div>
+          <div class="tl-pt">Sessão da trilha Agentforce. Adicionar título, horário e sala do catálogo.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot latam"></div>
+        <div class="tl-card latam">
+          <div class="tl-time">TBD <span class="tl-badge latam">LATAM</span></div>
+          <h4>— Add LATAM session / Executive Lunch —</h4>
+          <div class="tl-en">LATAM-dedicated session or Executive Lunch hosted by Salesforce LATAM team. Confirm invitation with your Salesforce contact.</div>
+          <div class="tl-pt">Sessão LATAM ou Almoço Executivo com o time Salesforce LATAM. Confirme o convite com seu contato.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 90 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#E55B2D;box-shadow:0 0 0 2px #E55B2D"></div>
+        <div class="tl-card" style="border-left:4px solid #E55B2D">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#E55B2D;color:#fff">ENERGY &amp; UTILITIES</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Energy &amp; Utilities track session. Add title, time, and room.</div>
+          <div class="tl-pt">Sessão da trilha Energy &amp; Utilities. Adicionar título, horário e sala.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>☕ 30 min break — charge devices at Moscone stations</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#1A6FB5;box-shadow:0 0 0 2px #1A6FB5"></div>
+        <div class="tl-card" style="border-left:4px solid #1A6FB5">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#1A6FB5;color:#fff">PUBLIC SECTOR</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Public Sector track session. Add title, time, and room from the Dreamforce catalog.</div>
+          <div class="tl-pt">Sessão da trilha Public Sector. Adicionar título, horário e sala do catálogo.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">TBD <span class="tl-badge">DEMO ZONE</span></div>
+          <h4>Agentforce World Tour — Hands-On Demo Floor</h4>
+          <div class="tl-en">Open demo floor — interact with Agentforce, Einstein AI, and Data Cloud live. Bring specific Petrobras use cases.</div>
+          <div class="tl-pt">Área aberta de demos — interaja com Agentforce, Einstein AI e Data Cloud ao vivo. Leve casos de uso específicos da Petrobras.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone North — Agentforce Zone</span>
+            <span class="tl-meta-item">⏱ Open / self-paced</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="timeline-day" id="day3">
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#7B6CF6;box-shadow:0 0 0 2px #7B6CF6"></div>
+        <div class="tl-card" style="border-left:4px solid #7B6CF6">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#7B6CF6;color:#fff">AGENTFORCE</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Agentforce track session. Add title, time, and room from the Dreamforce catalog.</div>
+          <div class="tl-pt">Sessão da trilha Agentforce. Adicionar título, horário e sala do catálogo.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#C44BC4;box-shadow:0 0 0 2px #C44BC4"></div>
+        <div class="tl-card" style="border-left:4px solid #C44BC4">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#C44BC4;color:#fff">HEADLESS 360</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Headless 360 Platform track session. Add title, time, and room from the Dreamforce catalog.</div>
+          <div class="tl-pt">Sessão da trilha Headless 360 Platform. Adicionar título, horário e sala do catálogo.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot latam"></div>
+        <div class="tl-card latam">
+          <div class="tl-time">TBD <span class="tl-badge latam">LATAM</span></div>
+          <h4>— Add LATAM session / Brazil Roundtable —</h4>
+          <div class="tl-en">LATAM-focused session or Brazil Digital Leaders Roundtable. Small group, high-value networking.</div>
+          <div class="tl-pt">Sessão LATAM ou Mesa-Redonda de Líderes Digitais do Brasil. Pequeno grupo, alto valor de networking.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 90 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🍜 Recommended: Cotogna or Bix for lunch (book ahead!) — 15 min from Moscone</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#0D9E6E;box-shadow:0 0 0 2px #0D9E6E"></div>
+        <div class="tl-card" style="border-left:4px solid #0D9E6E">
+          <div class="tl-time">TBD <span class="tl-badge" style="background:#0D9E6E;color:#fff">FIELD SERVICE</span></div>
+          <h4>— Add session from catalog —</h4>
+          <div class="tl-en">Field Service track session. Add title, time, and room from the Dreamforce catalog.</div>
+          <div class="tl-pt">Sessão da trilha Field Service. Adicionar título, horário e sala do catálogo.</div>
+          <div class="tl-meta"><span class="tl-meta-item">📍 TBD</span><span class="tl-meta-item">⏱ 50 min</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot executive"></div>
+        <div class="tl-card executive">
+          <div class="tl-time">TBD <span class="tl-badge">EXECUTIVE MEETING</span></div>
+          <h4>Account Planning: Strategic Next Steps</h4>
+          <div class="tl-en">Debrief with your Salesforce account team — align on takeaways, next steps, and priorities before returning to Brazil.</div>
+          <div class="tl-pt">Debrief com o time de conta da Salesforce — alinhar aprendizados, próximos passos e prioridades antes de retornar ao Brasil.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Marriott Marquis, Executive Briefing Center</span>
+            <span class="tl-meta-item">⏱ 60 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card keynote">
+          <div class="tl-time">TBD <span class="tl-badge keynote">CLOSING</span></div>
+          <h4>Dreamforce Closing Keynote &amp; Concert</h4>
+          <div class="tl-en">Closing session with product spotlights and the legendary Dreamforce concert.</div>
+          <div class="tl-pt">Sessão de encerramento e o famoso show do Dreamforce.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Check Dreamforce App for concert venue</span>
+            <span class="tl-meta-item">⏱ Open-ended</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<hr class="divider"/>="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Petrobras × Dreamforce 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    color-scheme: light;
+    --ocean: #0D2B45;
+    --ocean-mid: #1A4A6E;
+    --ocean-light: #2A6599;
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --sf-blue: #00A1E0;
+    --sf-blue-dark: #0070D2;
+    --sf-blue-glow: rgba(0,161,224,0.25);
+    --fog: #8FA3B1;
+    --cream: #F7F4EE;
+    --white: #FFFFFF;
+    --text: #1A1A2E;
+    --muted: #5A6A78;
+    --radius: 12px;
+    --radius-sm: 6px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: var(--ocean);
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    height: 60px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ocean);
+  }
+
+  .nav-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-subtitle {
+    font-size: 10px;
+    color: var(--fog);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--fog);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--gold);
+    background: rgba(201,168,76,0.1);
+  }
+
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+  }
+
+  /* HERO */
+  .hero {
+    margin-top: 60px;
+    background:
+      linear-gradient(to bottom, rgba(5,15,25,0.72) 0%, rgba(5,15,25,0.55) 40%, rgba(5,15,25,0.78) 100%),
+      url("assets/df26-kv.png") center/cover no-repeat;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(247,244,238,0.08));
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(0,0,0,0.15), transparent);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero h1 span {
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: var(--fog);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 0.5rem;
+  }
+
+  .hero-sub-pt {
+    font-size: 0.85rem;
+    color: rgba(143,163,177,0.7);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-dates {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 40px;
+    padding: 10px 24px;
+  }
+
+  .hero-dates span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+
+  .hero-dates .dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* SECTION COMMON */
+  .section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--ocean);
+    margin-bottom: 0.4rem;
+    line-height: 1.2;
+  }
+
+  .section-title-pt {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(13,43,69,0.12);
+    margin: 0;
+  }
+
+  /* CHECKLIST */
+  .checklist-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .checklist-grid { grid-template-columns: 1fr; }
+  }
+
+  .checklist-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    border: 1px solid rgba(13,43,69,0.08);
+    box-shadow: 0 2px 8px rgba(13,43,69,0.05);
+  }
+
+  .checklist-card h3 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ocean);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .checklist-card h3 .icon {
+    font-size: 18px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(13,43,69,0.05);
+    cursor: pointer;
+  }
+
+  .check-item:last-child { border-bottom: none; }
+
+  .check-item input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+  }
+
+  .check-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+
+  .check-text .en { font-weight: 500; }
+  .check-text .pt { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 1px; }
+
+  .check-item.done .check-text { text-decoration: line-through; opacity: 0.5; }
+
+  /* SF TIPS */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 720px) {
+    .tips-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 480px) {
+    .tips-grid { grid-template-columns: 1fr; }
+  }
+
+  .tip-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid rgba(13,43,69,0.08);
+    box-shadow: 0 2px 8px rgba(13,43,69,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .tip-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(13,43,69,0.12);
+  }
+
+  .tip-card-header {
+    background: var(--ocean);
+    padding: 1rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tip-card-header .icon { font-size: 20px; }
+
+  .tip-card-header .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .tip-card-body {
+    padding: 1.2rem;
+  }
+
+  .tip-item {
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(13,43,69,0.06);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .tip-item:last-child { border-bottom: none; }
+
+  .tip-item strong { color: var(--ocean); font-weight: 600; }
+  .tip-item .detail { font-size: 11px; color: var(--muted); display: block; margin-top: 2px; }
+
+  /* EVENT TIPS */
+  .event-tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .event-tip {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.6rem;
+    border: 1px solid rgba(13,43,69,0.08);
+    border-left: 4px solid var(--gold);
+    box-shadow: 0 2px 6px rgba(13,43,69,0.04);
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+
+  .event-tip .tip-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .event-tip .tip-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ocean);
+    margin-bottom: 2px;
+  }
+
+  .event-tip .tip-content .tip-en {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+
+  .event-tip .tip-content .tip-pt {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* TIMELINE */
+  .timeline-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    padding: 8px 18px;
+    border-radius: 40px;
+    border: 1.5px solid rgba(13,43,69,0.15);
+    background: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--ocean);
+    color: var(--gold);
+    border-color: var(--ocean);
+  }
+
+  .timeline-day { display: none; }
+  .timeline-day.visible { display: block; }
+
+  .timeline {
+    position: relative;
+    padding-left: 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px; top: 8px; bottom: 8px;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.2));
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+
+  .tl-dot {
+    position: absolute;
+    left: -32px;
+    top: 14px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+
+  .tl-dot.executive { background: var(--ocean); box-shadow: 0 0 0 2px var(--ocean); }
+  .tl-dot.latam { background: #2ecc71; box-shadow: 0 0 0 2px #2ecc71; }
+  .tl-dot.travel { background: var(--fog); box-shadow: 0 0 0 2px var(--fog); border-style: dashed; }
+
+  .tl-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
+    border: 1px solid rgba(13,43,69,0.08);
+    box-shadow: 0 2px 6px rgba(13,43,69,0.04);
+  }
+
+  .tl-card.executive { border-left: 4px solid var(--ocean); }
+  .tl-card.latam { border-left: 4px solid #2ecc71; }
+  .tl-card.keynote { border-left: 4px solid var(--gold); background: linear-gradient(to right, #fffef5, var(--white)); }
+  .tl-card.travel {
+    background: rgba(143,163,177,0.1);
+    border: 1px dashed rgba(143,163,177,0.4);
+    box-shadow: none;
+  }
+
+  .tl-time {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .tl-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+    background: var(--ocean);
+    color: var(--gold);
+  }
+
+  .tl-badge.latam { background: rgba(46,204,113,0.15); color: #1a9455; }
+  .tl-badge.keynote { background: rgba(201,168,76,0.15); color: #8B6914; }
+
+  .tl-card h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ocean);
+    margin-bottom: 3px;
+    line-height: 1.3;
+  }
+
+  .tl-card .tl-en {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.5;
+    margin-bottom: 3px;
+  }
+
+  .tl-card .tl-pt {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .tl-card .tl-meta {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .tl-meta-item {
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .tl-card.travel h4 { font-size: 13px; color: var(--muted); font-weight: 500; }
+
+  /* LEGEND */
+  .legend {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding: 12px 16px;
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(13,43,69,0.06);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ocean);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--fog);
+    line-height: 1.7;
+  }
+
+  footer strong { color: var(--gold); }
+
+  /* SECTION BG ALTERNATION */
+  .section-alt { background: var(--white); }
+  .section-alt .section { padding: 4rem 2rem; }
+
+  /* SCROLL ANIMATION */
+  @media (prefers-reduced-motion: no-preference) {
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* CO-BRAND */
+  .hero-cobrands {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .cobrand-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .cobrand-sf { color: #00A1E0; }
+  .cobrand-pb { color: var(--gold); }
+  .cobrand-divider {
+    font-size: 18px;
+    color: rgba(255,255,255,0.25);
+    font-weight: 300;
+  }
+  .pb-badge {
+    width: 24px; height: 24px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Playfair Display", serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ocean);
+  }
+
+  /* CLOUD DECO */
+  .hero-clouds {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .cloud { position: absolute; }
+  .cloud-1 { width: 340px; top: -10px; right: -40px; transform: rotate(-8deg); }
+  .cloud-2 { width: 260px; bottom: 10px; left: -20px; transform: rotate(5deg); }
+  .cloud-3 { width: 180px; top: 30px; left: 20%; opacity: 0.7; }
+
+  /* HERO TAGS */
+  .hero-tags {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 0.03em;
+    backdrop-filter: blur(4px);
+  }
+  .tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* NAV SF accent */
+  nav {
+    border-bottom: 1px solid rgba(0,161,224,0.2);
+  }
+  .nav-logo {
+    background: linear-gradient(135deg, var(--sf-blue) 0%, var(--gold) 100%);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">P</div>
+    <div>
+      <div class="nav-title">Petrobras × Dreamforce</div>
+      <div class="nav-subtitle">San Francisco · 2026</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#checklist" class="nav-link">Checklist</a></li>
+    <li><a href="#sf-tips" class="nav-link">San Francisco</a></li>
+    <li><a href="#event-tips" class="nav-link">Dreamforce Tips</a></li>
+    <li><a href="#sessions" class="nav-link">Sessions</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Co-brand lockup -->
+  <div class="hero-cobrands">
+    <div class="cobrand-item cobrand-sf">
+      <svg width="28" height="20" viewBox="0 0 50 35" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.8 6.1C22.7 4.1 25.4 2.9 28.4 2.9c4.1 0 7.7 2.3 9.6 5.7.7-.3 1.5-.5 2.3-.5 3.3 0 6 2.7 6 6 0 .5-.1 1-.2 1.5C48 16.7 49 18.8 49 21.1c0 4.5-3.6 8.1-8.1 8.1H13.1C8.1 29.2 4 25.1 4 20.1c0-3.8 2.3-7 5.6-8.5-.1-.6-.2-1.2-.2-1.8 0-5.2 4-9.4 9.1-9.4 1 0 1.9.2 2.8.4.1.4-.1.9.5 5.3z" fill="#00A1E0"/></svg>
+      <span>Salesforce</span>
+    </div>
+    <div class="cobrand-divider">×</div>
+    <div class="cobrand-item cobrand-pb">
+      <span class="pb-badge">P</span>
+      <span>Petrobras</span>
+    </div>
+  </div>
+
+  <div class="hero-eyebrow">Guia Exclusivo · Exclusive Guide</div>
+  <h1>Your <span>Dreamforce</span><br/>Experience Starts Here</h1>
+  <p class="hero-sub">A personalized guide crafted for the Petrobras team — everything you need for an exceptional experience at Salesforce's flagship event.</p>
+  <p class="hero-sub-pt">Um guia personalizado para a equipe Petrobras — tudo que você precisa para uma experiência excepcional no maior evento da Salesforce.</p>
+
+  <!-- SF-branded pill tags -->
+  <div class="hero-tags">
+    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Agentforce</div>
+    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Energy &amp; Utilities</div>
+    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Field Service</div>
+    <div class="hero-tag"><span class="tag-dot" style="background:#00A1E0"></span>Public Sector</div>
+    <div class="hero-tag"><span class="tag-dot" style="background:#C9A84C"></span>Headless 360</div>
+  </div>
+
+  <div class="hero-dates">
+    <span>San Francisco</span>
+    <div class="dot"></div>
+    <span>Moscone Center</span>
+    <div class="dot"></div>
+    <span>Dreamforce 2026</span>
+  </div>
+</section>
+
+<!-- CHECKLIST -->
+<div id="checklist">
+<div class="section fade-in">
+  <div class="section-label">Antes de Partir · Before You Leave</div>
+  <h2 class="section-title">Pre-Travel Checklist</h2>
+  <p class="section-title-pt">Checklist de Viagem</p>
+
+  <div class="checklist-grid">
+    <div class="checklist-card">
+      <h3><span class="icon">🛂</span> Documents & Visa</h3>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Valid US Visa (B1/B2 or applicable)</div>
+          <div class="pt">Visto americano válido (B1/B2 ou aplicável)</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Passport valid 6+ months beyond travel dates</div>
+          <div class="pt">Passaporte válido por 6+ meses além da viagem</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Dreamforce registration confirmation email</div>
+          <div class="pt">E-mail de confirmação do registro no Dreamforce</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Download the Dreamforce mobile app</div>
+          <div class="pt">Baixar o app mobile do Dreamforce</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">ESTA/travel authorization if applicable</div>
+          <div class="pt">ESTA ou autorização de viagem, se aplicável</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="checklist-card">
+      <h3><span class="icon">🌁</span> Weather & Packing</h3>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Pack layers — SF September is 14–22°C (57–72°F)</div>
+          <div class="pt">Levar roupas em camadas — SP em setembro: 14–22°C</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Light jacket for evenings (fog comes in fast)</div>
+          <div class="pt">Jaqueta leve para as noites — o nevoeiro chega rápido</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Comfortable walking shoes — expect 15,000+ steps/day</div>
+          <div class="pt">Sapatos confortáveis — espere 15.000+ passos por dia</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Universal power adapter (US plug: Type A/B)</div>
+          <div class="pt">Adaptador universal (tomada americana: Tipo A/B)</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Portable phone charger / power bank</div>
+          <div class="pt">Carregador portátil / power bank</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="checklist-card">
+      <h3><span class="icon">✈️</span> Travel & Logistics</h3>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Hotel booked near Moscone Center (SoMa district)</div>
+          <div class="pt">Hotel reservado próximo ao Moscone Center (bairro SoMa)</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Download Uber/Lyft app with US payment method</div>
+          <div class="pt">Baixar Uber/Lyft com método de pagamento americano</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">International roaming plan or US SIM card</div>
+          <div class="pt">Plano de roaming internacional ou chip americano</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Notify your bank of international travel</div>
+          <div class="pt">Avisar o banco sobre a viagem internacional</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="checklist-card">
+      <h3><span class="icon">🎯</span> Event Preparation</h3>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Review your session schedule and add to calendar</div>
+          <div class="pt">Revisar agenda de sessões e adicionar ao calendário</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Confirm executive meeting times with your Salesforce contact</div>
+          <div class="pt">Confirmar horários das reuniões executivas com o contato Salesforce</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Bring business cards (digital or physical)</div>
+          <div class="pt">Trazer cartões de visita (digitais ou físicos)</div>
+        </div>
+      </label>
+      <label class="check-item"><input type="checkbox" onchange="toggleDone(this)"/>
+        <div class="check-text">
+          <div class="en">Review Petrobras's Salesforce roadmap goals before arriving</div>
+          <div class="pt">Revisar os objetivos do roadmap Salesforce da Petrobras antes de chegar</div>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SF TIPS -->
+<div id="sf-tips" class="section-alt">
+<div class="section fade-in">
+  <div class="section-label">Conhecendo a Cidade · Know the City</div>
+  <h2 class="section-title">San Francisco Tips</h2>
+  <p class="section-title-pt">Dicas de São Francisco</p>
+
+  <div class="tips-grid">
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">🍽️</span>
+        <span class="label">Restaurants</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Bix</strong> — Supper Club vibes
+          <span class="detail">Jazz, cocktails &amp; American classics. Book ahead. $$$ · Nearby Moscone</span>
+        </div>
+        <div class="tip-item">
+          <strong>Cotogna</strong> — Northern Italian
+          <span class="detail">Wood-fired pastas, great for a team dinner. $$$ · Jackson Square</span>
+        </div>
+        <div class="tip-item">
+          <strong>Delfina</strong> — Cal-Italian Neighborhood
+          <span class="detail">Unpretentious, excellent pizza. $$ · Mission District</span>
+        </div>
+        <div class="tip-item">
+          <strong>Zazie</strong> — French Brunch
+          <span class="detail">Best brunch in the city, cozy. $$ · Cole Valley</span>
+        </div>
+        <div class="tip-item">
+          <strong>Nopa</strong> — Late Night Farm-to-Table
+          <span class="detail">Open until 1am, great cocktails. $$$ · Divisadero</span>
+        </div>
+        <div class="tip-item">
+          <strong>Gary Danko</strong> — Fine Dining
+          <span class="detail">SF institution, perfect for executive dinner. $$$$ · Fisherman's Wharf</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">🚌</span>
+        <span class="label">Getting Around</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Uber / Lyft</strong>
+          <span class="detail">Most reliable option. Expect surge pricing during Dreamforce — leave early</span>
+        </div>
+        <div class="tip-item">
+          <strong>Muni Metro (BART)</strong>
+          <span class="detail">Powell St. station is closest to Moscone. Quick &amp; cheap. Get Clipper card</span>
+        </div>
+        <div class="tip-item">
+          <strong>Walking</strong>
+          <span class="detail">SoMa is very walkable. Most Dreamforce venues are within 15-min walk</span>
+        </div>
+        <div class="tip-item">
+          <strong>Lime / Bird Scooters</strong>
+          <span class="detail">Great for quick hops. Download the app before you arrive</span>
+        </div>
+        <div class="tip-item">
+          <strong>Airport (SFO → City)</strong>
+          <span class="detail">BART from SFO to Powell St. ~35 min, $11. Uber ~30–50 min, $35–60</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">📍</span>
+        <span class="label">Must-See SF</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Golden Gate Bridge</strong>
+          <span class="detail">30-min drive or cycle. Morning views are best before fog rolls in</span>
+        </div>
+        <div class="tip-item">
+          <strong>Ferry Building Marketplace</strong>
+          <span class="detail">Farmers market Sat mornings, great coffee &amp; artisan food. 10-min from Moscone</span>
+        </div>
+        <div class="tip-item">
+          <strong>Salesforce Tower Rooftop</strong>
+          <span class="detail">Top of SF's tallest building — often accessible during Dreamforce</span>
+        </div>
+        <div class="tip-item">
+          <strong>Pier 39 / Fisherman's Wharf</strong>
+          <span class="detail">Classic SF experience — sea lions, clam chowder bowls, great bay views</span>
+        </div>
+        <div class="tip-item">
+          <strong>Chinatown &amp; North Beach</strong>
+          <span class="detail">America's oldest Chinatown, adjacent to Little Italy. Perfect for a wander</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">💡</span>
+        <span class="label">Local Know-How</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Tipping Culture</strong>
+          <span class="detail">15–20% at restaurants, $2–5 for taxis/rideshare is standard</span>
+        </div>
+        <div class="tip-item">
+          <strong>Safety</strong>
+          <span class="detail">Stick to SoMa, Union Square, and waterfront areas. Avoid Tenderloin at night</span>
+        </div>
+        <div class="tip-item">
+          <strong>Currency</strong>
+          <span class="detail">Cards accepted everywhere. Apple Pay / Google Pay widely used</span>
+        </div>
+        <div class="tip-item">
+          <strong>Time Zone</strong>
+          <span class="detail">PDT (UTC-7). That's 4 hours behind Brasília time (BRT = UTC-3)</span>
+        </div>
+        <div class="tip-item">
+          <strong>Emergency</strong>
+          <span class="detail">US emergency number: 911. Consulado Brasileiro: +1 (415) 981-8170</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">☕</span>
+        <span class="label">Coffee &amp; Quick Bites</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Sightglass Coffee</strong>
+          <span class="detail">Best third-wave coffee in SoMa, 5-min from Moscone. Great for breakfast meetings</span>
+        </div>
+        <div class="tip-item">
+          <strong>Blue Bottle Coffee</strong>
+          <span class="detail">Multiple locations near venues, reliable single-origin espresso</span>
+        </div>
+        <div class="tip-item">
+          <strong>Tartine Manufactory</strong>
+          <span class="detail">Legendary bakery in Mission. Best croissants on the West Coast</span>
+        </div>
+        <div class="tip-item">
+          <strong>The Bird (Fried Chicken)</strong>
+          <span class="detail">Perfect fast lunch between sessions — SoMa location. Very popular</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-card">
+      <div class="tip-card-header">
+        <span class="icon">🏟️</span>
+        <span class="label">Moscone Center</span>
+      </div>
+      <div class="tip-card-body">
+        <div class="tip-item">
+          <strong>Moscone North / South / West</strong>
+          <span class="detail">Three connected buildings. Most keynotes in Moscone West (ground floor)</span>
+        </div>
+        <div class="tip-item">
+          <strong>Marriott Marquis</strong>
+          <span class="detail">Connected by skybridge — many executive meetings held here</span>
+        </div>
+        <div class="tip-item">
+          <strong>Yerba Buena Gardens</strong>
+          <span class="detail">Outdoor park between buildings — great for a fresh air break</span>
+        </div>
+        <div class="tip-item">
+          <strong>Baggage Storage</strong>
+          <span class="detail">Available at registration — leave your bag, stay hands-free</span>
+        </div>
+        <div class="tip-item">
+          <strong>Charging Stations</strong>
+          <span class="detail">Scattered throughout all buildings — bring your cable</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="divider"/>
+
+<!-- EVENT TIPS -->
+<div id="event-tips">
+<div class="section fade-in">
+  <div class="section-label">Como se Preparar · How to Prepare</div>
+  <h2 class="section-title">Dreamforce Pro Tips</h2>
+  <p class="section-title-pt">Dicas Essenciais do Evento</p>
+
+  <div class="event-tips-list">
+    <div class="event-tip">
+      <span class="tip-icon">⏰</span>
+      <div class="tip-content">
+        <h4>Arrive Early for Keynotes</h4>
+        <div class="tip-en">The opening keynote fills up fast. Arrive at Moscone West at least 45–60 minutes before the scheduled start. Lines form early and seating is first-come, first-served even with registration.</div>
+        <div class="tip-pt">O keynote de abertura lota rapidamente. Chegue ao Moscone West com 45–60 minutos de antecedência. As filas se formam cedo e os assentos são por ordem de chegada, mesmo com registro.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🌎</span>
+      <div class="tip-content">
+        <h4>LATAM &amp; Energy Industry Sessions — Don't Miss</h4>
+        <div class="tip-en">Salesforce dedicates specific tracks for Latin America customers and for Energy &amp; Utilities. These sessions feature peers from your industry and are the best place to benchmark, learn, and connect with relevant use cases.</div>
+        <div class="tip-pt">A Salesforce dedica trilhas específicas para clientes da América Latina e para os setores de Energia &amp; Utilities. Essas sessões apresentam pares do seu setor e são o melhor lugar para benchmarking e aprendizado.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🤝</span>
+      <div class="tip-content">
+        <h4>Executive Meetings: Arrive 10 min Early</h4>
+        <div class="tip-en">Executive briefings are held at the Marriott Marquis (connected to Moscone). Arrive 10 minutes early, check in at the Executive Briefing Center reception, and bring a focused list of 2–3 strategic topics you want to discuss.</div>
+        <div class="tip-pt">As reuniões executivas acontecem no Marriott Marquis (conectado ao Moscone). Chegue 10 minutos antes, faça check-in na recepção do Executive Briefing Center e traga uma lista focada de 2–3 temas estratégicos.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">📱</span>
+      <div class="tip-content">
+        <h4>Use the Dreamforce App</h4>
+        <div class="tip-en">The official Dreamforce app is your command center. Build your personal schedule, get real-time room changes, and connect with other attendees. Sessions can reach capacity — add them to your agenda in advance.</div>
+        <div class="tip-pt">O app oficial do Dreamforce é sua central de comando. Crie sua agenda pessoal, receba atualizações de salas em tempo real e conecte-se com outros participantes. As sessões podem lotar — adicione-as à sua agenda com antecedência.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🚶</span>
+      <div class="tip-content">
+        <h4>Build in Transit Time Between Sessions</h4>
+        <div class="tip-en">Walking from one end of Moscone to another takes 10–15 minutes during peak hours. Sessions at partner venues (Marriott, Hilton) can take 20+ minutes. We've factored this into the session recommendations below.</div>
+        <div class="tip-pt">Caminhar de uma ponta à outra do Moscone leva 10–15 minutos nos horários de pico. Sessões em locais parceiros (Marriott, Hilton) podem levar 20+ minutos. Isso já está considerado nas recomendações de sessões abaixo.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🍽️</span>
+      <div class="tip-content">
+        <h4>Meals &amp; Networking Strategy</h4>
+        <div class="tip-en">Lunch lines inside Moscone are long. Either eat early (11:30am) or step outside to SoMa restaurants for a faster, better experience. Evening events and parties are where real connections happen — confirm your invitations.</div>
+        <div class="tip-pt">As filas do almoço dentro do Moscone são longas. Almoce cedo (11h30) ou saia para os restaurantes do SoMa. Os eventos noturnos são onde as conexões reais acontecem — confirme seus convites.</div>
+      </div>
+    </div>
+
+    <div class="event-tip">
+      <span class="tip-icon">🤖</span>
+      <div class="tip-content">
+        <h4>Agentforce Is the Theme of 2026</h4>
+        <div class="tip-en">This year's Dreamforce is heavily focused on Agentforce — Salesforce's AI agent platform. Petrobras should pay close attention to demos in the Agentforce World Tour zone and how autonomous AI agents apply to field service, customer operations, and data management in the energy sector.</div>
+        <div class="tip-pt">O Dreamforce 2026 é fortemente focado no Agentforce — a plataforma de agentes de IA da Salesforce. A Petrobras deve prestar atenção às demos na zona Agentforce World Tour e como agentes de IA autônomos se aplicam a field service, operações de clientes e gestão de dados no setor de energia.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<hr class="divider"/>
+
+<!-- SESSIONS TIMELINE -->
+<div id="sessions" class="section-alt">
+<div class="section fade-in">
+  <div class="section-label">Agenda Recomendada · Recommended Agenda</div>
+  <h2 class="section-title">Sessions for Petrobras</h2>
+  <p class="section-title-pt">Sessões Recomendadas · curadas para o setor de energia e LATAM</p>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background: var(--gold)"></div> General Session</div>
+    <div class="legend-item"><div class="legend-dot" style="background: var(--ocean)"></div> Executive / Private</div>
+    <div class="legend-item"><div class="legend-dot" style="background: #2ecc71"></div> LATAM Focus</div>
+    <div class="legend-item"><div class="legend-dot" style="background: var(--fog)"></div> Travel Buffer</div>
+  </div>
+
+  <div class="timeline-tabs">
+    <button class="tab-btn active" onclick="showDay('day1', this)">Day 1</button>
+    <button class="tab-btn" onclick="showDay('day2', this)">Day 2</button>
+    <button class="tab-btn" onclick="showDay('day3', this)">Day 3</button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="timeline-day visible" id="day1">
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card keynote">
+          <div class="tl-time">08:00 AM <span class="tl-badge keynote">KEYNOTE</span></div>
+          <h4>Opening Keynote — Salesforce CEO &amp; Agentforce Launch</h4>
+          <div class="tl-en">The must-see session of the entire event. CEO keynote unveils the year's biggest product announcements, Agentforce 2.0 capabilities, and strategic vision. Arrive by 7:00am for good seats.</div>
+          <div class="tl-pt">A sessão obrigatória do evento. Anúncios de produto, Agentforce 2.0 e visão estratégica. Chegue às 7h para bons assentos.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone West, Main Hall</span>
+            <span class="tl-meta-item">⏱ ~2 hours</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🚶 15 min walk to Moscone North — grab coffee en route</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">10:30 AM <span class="tl-badge">ENERGY TRACK</span></div>
+          <h4>AI Agents in Energy &amp; Utilities: Real-World Deployments</h4>
+          <div class="tl-en">Peer case studies from global energy companies deploying Agentforce for field service optimization, predictive maintenance, and customer operations. Directly relevant to Petrobras's operational scale.</div>
+          <div class="tl-pt">Casos reais de empresas de energia usando Agentforce para manutenção preditiva e operações de campo — diretamente relevante para a escala operacional da Petrobras.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone North, Room 2010</span>
+            <span class="tl-meta-item">⏱ 50 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🥗 Lunch break — recommended: Sightglass Coffee or head outside SoMa (avoid Moscone lines)</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot latam"></div>
+        <div class="tl-card latam">
+          <div class="tl-time">1:30 PM <span class="tl-badge latam">LATAM</span></div>
+          <h4>LATAM Customer Success Stories: Digital Transformation at Scale</h4>
+          <div class="tl-en">Latin America-focused session showcasing how leading LATAM enterprises have accelerated digital transformation with Salesforce. Networking opportunity with regional peers and Salesforce LATAM leadership.</div>
+          <div class="tl-pt">Sessão focada na América Latina com casos de transformação digital de empresas líderes. Oportunidade de networking com pares regionais e liderança da Salesforce LATAM.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone South, Room 108</span>
+            <span class="tl-meta-item">⏱ 50 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🚶 20 min to Marriott Marquis (Executive Briefing Center)</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot executive"></div>
+        <div class="tl-card executive">
+          <div class="tl-time">3:00 PM <span class="tl-badge">EXECUTIVE MEETING</span></div>
+          <h4>Executive Briefing: Petrobras Strategic Roadmap Session</h4>
+          <div class="tl-en">Dedicated executive briefing with Salesforce VP/SVP team. Bring your top 2–3 strategic questions around Agentforce adoption, Data Cloud integration, and energy sector roadmap. [Confirm time with your Salesforce contact]</div>
+          <div class="tl-pt">Reunião executiva dedicada com time de VP/SVP da Salesforce. Traga suas 2–3 questões estratégicas sobre adoção de Agentforce e Data Cloud. [Confirmar horário com seu contato Salesforce]</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Marriott Marquis, Executive Briefing Center</span>
+            <span class="tl-meta-item">⏱ 60–90 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">6:00 PM <span class="tl-badge">EVENING EVENT</span></div>
+          <h4>Dreamforce Opening Celebration / Welcome Reception</h4>
+          <div class="tl-en">The official opening party — key opportunity for informal networking. Confirm if Petrobras has an invitation to any exclusive partner events running in parallel.</div>
+          <div class="tl-pt">A festa de abertura oficial — oportunidade para networking informal. Confirme se a Petrobras tem convite para eventos exclusivos de parceiros acontecendo em paralelo.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 TBD — Check Dreamforce App</span>
+            <span class="tl-meta-item">⏱ Open-ended</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="timeline-day" id="day2">
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card keynote">
+          <div class="tl-time">09:00 AM <span class="tl-badge keynote">KEYNOTE</span></div>
+          <h4>Agentforce World Tour Keynote</h4>
+          <div class="tl-en">Deep-dive into the Agentforce platform — live demos, partner integrations, and the roadmap for autonomous AI agents. This is where the technical vision becomes concrete. Essential for Petrobras's digital transformation team.</div>
+          <div class="tl-pt">Mergulho profundo na plataforma Agentforce — demos ao vivo, integrações de parceiros e roadmap para agentes de IA autônomos. Essencial para o time de transformação digital da Petrobras.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone West</span>
+            <span class="tl-meta-item">⏱ ~90 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🚶 10 min to Moscone North — grab a coffee at the atrium</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">11:00 AM <span class="tl-badge">DATA CLOUD</span></div>
+          <h4>Data Cloud for Enterprise: Unifying Petabytes of Customer &amp; Operational Data</h4>
+          <div class="tl-en">Hands-on session on Data Cloud architecture for large enterprises. Covers how companies with complex, multi-system environments (like oil &amp; gas) can unify data to power AI agents and real-time insights.</div>
+          <div class="tl-pt">Sessão técnica sobre a arquitetura do Data Cloud para grandes empresas. Cobre como empresas com ambientes complexos (como petróleo e gás) podem unificar dados para IA e insights em tempo real.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone North, Room 2020</span>
+            <span class="tl-meta-item">⏱ 50 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot latam"></div>
+        <div class="tl-card latam">
+          <div class="tl-time">12:30 PM <span class="tl-badge latam">LATAM LUNCH</span></div>
+          <h4>LATAM Executive Lunch — Hosted by Salesforce LATAM Team</h4>
+          <div class="tl-en">Invitation-only lunch for LATAM enterprise customers. Intimate setting with Salesforce LATAM leadership and C-level peers from major Brazilian and LatAm companies. [Confirm invitation status with your Salesforce contact]</div>
+          <div class="tl-pt">Almoço por convite para clientes enterprise da LATAM. Contexto íntimo com liderança da Salesforce LATAM e pares C-level de grandes empresas brasileiras. [Confirmar com seu contato Salesforce]</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 TBD — Marriott or nearby venue</span>
+            <span class="tl-meta-item">⏱ ~90 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">2:30 PM <span class="tl-badge">INDUSTRY AI</span></div>
+          <h4>AI in Field Service: Autonomous Agents for Industrial Operations</h4>
+          <div class="tl-en">Field Service Lightning + Agentforce for industrial use cases — predictive maintenance, remote inspection automation, and technician dispatch optimization. High relevance for Petrobras E&amp;P and downstream operations.</div>
+          <div class="tl-pt">Field Service Lightning + Agentforce para casos industriais — manutenção preditiva, automação de inspeção remota e otimização de despacho de técnicos. Alta relevância para as operações de E&amp;P e downstream da Petrobras.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone South, Room 210</span>
+            <span class="tl-meta-item">⏱ 50 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>☕ 30 min break — recharge at Sightglass or charge devices at Moscone stations</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">4:00 PM <span class="tl-badge">DEMO ZONE</span></div>
+          <h4>Agentforce World Tour — Hands-On Demo Experience</h4>
+          <div class="tl-en">Open demo floor where you can interact directly with Agentforce, Einstein AI, and Data Cloud in live environments. Bring specific Petrobras use cases to test with Salesforce solution engineers on the floor.</div>
+          <div class="tl-pt">Área aberta de demos para interagir diretamente com Agentforce, Einstein AI e Data Cloud em ambientes ao vivo. Leve casos de uso específicos da Petrobras para testar com engenheiros Salesforce.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone North — Agentforce Zone</span>
+            <span class="tl-meta-item">⏱ Open / self-paced</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="timeline-day" id="day3">
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">09:30 AM <span class="tl-badge">STRATEGY</span></div>
+          <h4>Future of CRM: AI-Native Enterprises in 2027 and Beyond</h4>
+          <div class="tl-en">Forward-looking session on where enterprise software is heading — AI-first architectures, the role of human agents vs. autonomous agents, and how industry leaders are preparing. Good framing session for executive takeaways.</div>
+          <div class="tl-pt">Sessão prospectiva sobre o futuro do software corporativo — arquiteturas AI-first e como líderes do setor estão se preparando. Boa sessão de enquadramento para conclusões executivas.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone West, Room 3001</span>
+            <span class="tl-meta-item">⏱ 50 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot latam"></div>
+        <div class="tl-card latam">
+          <div class="tl-time">11:00 AM <span class="tl-badge latam">LATAM</span></div>
+          <h4>Brazil Digital Leaders Roundtable</h4>
+          <div class="tl-en">Small-group roundtable exclusively for Brazilian enterprise customers. Structured discussion format — share challenges, hear from Salesforce product leadership on Brazil-specific roadmap items.</div>
+          <div class="tl-pt">Mesa-redonda em pequeno grupo exclusivamente para clientes enterprise brasileiros. Formato de discussão estruturada — compartilhe desafios e ouça da liderança de produto Salesforce sobre itens do roadmap específicos para o Brasil.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Marriott Marquis — check Dreamforce App</span>
+            <span class="tl-meta-item">⏱ 90 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot travel"></div>
+        <div class="tl-card travel">
+          <h4>🍜 Recommended lunch: Cotogna or Bix (book ahead!) — 15-min from Moscone</h4>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot executive"></div>
+        <div class="tl-card executive">
+          <div class="tl-time">2:00 PM <span class="tl-badge">EXECUTIVE MEETING</span></div>
+          <h4>Follow-Up: Strategic Next Steps &amp; Account Planning Session</h4>
+          <div class="tl-en">Debrief session with your Salesforce account team. Review key takeaways from the event, align on next steps, confirm priorities for H2/H1 planning, and capture commitments before returning to Brazil.</div>
+          <div class="tl-pt">Sessão de debrief com o time de conta da Salesforce. Revise os principais aprendizados do evento, alinhe os próximos passos e confirme prioridades antes de retornar ao Brasil.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Marriott Marquis, Executive Briefing Center</span>
+            <span class="tl-meta-item">⏱ 60 min</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-time">4:00 PM <span class="tl-badge">CLOSING</span></div>
+          <h4>Dreamforce Closing Keynote &amp; Celebration</h4>
+          <div class="tl-en">The closing session wraps up the event with product announcements, customer spotlights, and the legendary Dreamforce concert. A celebratory end to an intense week of learning.</div>
+          <div class="tl-pt">A sessão de encerramento resume o evento com anúncios de produto, destaques de clientes e o famoso show do Dreamforce. Um final celebrativo para uma semana intensa de aprendizado.</div>
+          <div class="tl-meta">
+            <span class="tl-meta-item">📍 Moscone West — check Dreamforce App for concert venue</span>
+            <span class="tl-meta-item">⏱ Open-ended</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong>Petrobras × Dreamforce 2026</strong> · Curated by the Salesforce Team<br/>
+    <span style="font-size:12px; opacity:0.6">Session times are subject to change — always check the Dreamforce App for real-time updates.<br/>
+    Os horários das sessões estão sujeitos a alterações — verifique sempre o App Dreamforce para atualizações em tempo real.</span>
+  </p>
+</footer>
+
+<script>
+  // Tab switching
+  function showDay(dayId, btn) {
+    document.querySelectorAll('.timeline-day').forEach(d => d.classList.remove('visible'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(dayId).classList.add('visible');
+    btn.classList.add('active');
+  }
+
+  // Checkbox done state
+  function toggleDone(cb) {
+    cb.closest('.check-item').classList.toggle('done', cb.checked);
+  }
+
+  // Scroll-based nav highlighting
+  const sections = ['checklist', 'sf-tips', 'event-tips', 'sessions'];
+  function updateNav() {
+    const scrollY = window.scrollY + 80;
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      const link = document.querySelector(`.nav-link[href="#${id}"]`);
+      if (!el || !link) return;
+      const { offsetTop, offsetHeight } = el;
+      link.classList.toggle('active', scrollY >= offsetTop && scrollY < offsetTop + offsetHeight);
+    });
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
